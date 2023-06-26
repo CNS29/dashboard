@@ -1,0 +1,8 @@
+[x] useMediaQuery()
+[x] styled()
+
+
+[x] useMemo()
+[x] Redux toolkit
+[x] Router dom
+[x] Context

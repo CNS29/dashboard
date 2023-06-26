@@ -1,19 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import { getLocalStorageByKey, setLocalStorageByKey } from '../../utils/common';
+import { THEME_MODE } from '../../common/constants';
 
 const initialState = {
-  mode: "light",
+  mode: getLocalStorageByKey('mode') || THEME_MODE.lIGHT,
+  userId: '643ecd390ef27e394b807655',
+  isToggleSidebar: true,
+  isLoading: false,
 };
 
 export const common = createSlice({
-  name: "common",
+  name: 'common',
   initialState,
   reducers: {
     setMode(state) {
-      state.mode = state.mode === "light" ? "dark" : "light";
+      state.mode =
+        state.mode === THEME_MODE.lIGHT ? THEME_MODE.DARK : THEME_MODE.lIGHT;
+      setLocalStorageByKey(['mode', state.mode]);
+    },
+    setToggleSidebar(state) {
+      state.isToggleSidebar = !state.isToggleSidebar;
+    },
+    setToggleLoading(state, { payload }) {
+      state.isLoading = payload;
     },
   },
 });
 
-export const { setMode } = common.actions;
+export const { setMode, setToggleSidebar, setToggleLoading } = common.actions;
 
 export default common.reducer;

@@ -1,10 +1,12 @@
-import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { themeSettings } from "./theme";
-import Layout from "./pages/layout";
-import Dashboard from "./pages/dashboard";
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/dashboard';
+import Products from './pages/products';
+import Users from './pages/users';
+import { themeSettings } from './theme';
 
 function App() {
   const mode = useSelector((states) => states.common.mode);
@@ -20,6 +22,8 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/products" element={<Products />} />
           </Route>
         </Routes>
       </ThemeProvider>
